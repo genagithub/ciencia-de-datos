@@ -90,11 +90,11 @@ df_3 = pd.DataFrame(data_3)
 
 fig = make_subplots(rows=1, cols=3)
 
-fig.add_trace(go.Bar(x=df_1["products"],y=df_1["products_revenue"],name="20 productos con más ganancias"),row=1,col=1)
+fig.add_trace(go.Bar(x=df_1["products"],y=df_1["products_revenue"],name="20 productos con más ingresos"),row=1,col=1)
 
-fig.add_trace(go.Bar(x=df_3["names"],y=df_3["employees_revenue"],name="Ganancias de empleados"),row=1,col=2)
+fig.add_trace(go.Bar(x=df_3["names"],y=df_3["employees_revenue"],name="Ingresos de empleados"),row=1,col=2)
 
-fig.add_trace(go.Bar(x=df_2["orders_id"],y=df_2["orders_revenue"],name="20 órdenes con más ganancias"),row=1,col=3)
+fig.add_trace(go.Bar(x=df_2["orders_id"],y=df_2["orders_revenue"],name="20 órdenes con más ingresos"),row=1,col=3)
 
-fig.update_layout(height=645, width=1340, title_text="Rentabilidad")
+fig.update_layout(height=660, width=1340, title_text="Rentabilidad")
 fig.show()
