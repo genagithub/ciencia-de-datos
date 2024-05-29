@@ -96,5 +96,5 @@ fig.add_trace(go.Bar(x=df_3["names"],y=df_3["employees_revenue"],name="Ganancias
 
 fig.add_trace(go.Bar(x=df_2["orders_id"],y=df_2["orders_revenue"],name="20 órdenes con más ganancias"),row=1,col=3)
 
-fig.update_layout(height=650, width=1350, title_text="Rentabilidad")
+fig.update_layout(height=645, width=1340, title_text="Rentabilidad")
 fig.show()
