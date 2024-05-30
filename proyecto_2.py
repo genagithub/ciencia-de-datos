@@ -151,25 +151,25 @@ app.layout = html.Div(id="body",children=[
         html.Div(id="data_1",className="e2_children",style={"color":"blue"},children=[   
             html.H2("Productos",style={"color":"blue","font-family":"sans-serif"}),         
             html.Ul(className="e2_ul",children=[
-                html.Li(f"Producto: {product}",style={"color":"blue","font-family":"sans-serif"}),
-                html.Li(f"Cantidad total vendida: {total_quantity_1}",style={"color":"blue","font-family":"sans-serif"}),
-                html.Li(f"Ingresos totales: {total_incomes_1}$",style={"color":"blue","font-family":"sans-serif"})
+                html.Li(f"Producto: {product}",style={"color":"blue","font-family":"sans-serif","margin":"2.5px 0"}),
+                html.Li(f"Cantidad total vendida: {total_quantity_1}",style={"color":"blue","font-family":"sans-serif","margin":"2.5px 0"}),
+                html.Li(f"Ingresos totales: {total_incomes_1}$",style={"color":"blue","font-family":"sans-serif","margin":"2.5px 0"})
             ])
         ]),
         html.Div(id="data_2",className="e2_children",children=[
             html.H2("Empleados",style={"color":"red","font-family":"sans-serif"}),
             html.Ul(className="e2_ul",children=[
-                html.Li(f"Nombre: {name}",style={"color":"red","font-family":"sans-serif"}),
-                html.Li(f"Cantidad total vendida: {total_quantity_2}",style={"color":"red","font-family":"sans-serif"}),
-                html.Li(f"Ingresos totales: {total_incomes_2}$",style={"color":"red","font-family":"sans-serif"}),
+                html.Li(f"Nombre: {name}",style={"color":"red","font-family":"sans-serif","margin":"2.5px 0"}),
+                html.Li(f"Cantidad total de productos: {total_quantity_2}",style={"color":"red","font-family":"sans-serif","margin":"2.5px 0"}),
+                html.Li(f"Ingresos totales: {total_incomes_2}$",style={"color":"red","font-family":"sans-serif","margin":"2.5px 0"})
             ])
         ]),
         html.Div(id="data_3",className="e2_children",children=[
             html.H2("Órdenes",style={"color":"green","font-family":"sans-serif"}),
             html.Ul(className="e2_ul",style={"color":"green"},children=[
-                html.Li(f"Órden: {order_id}",style={"color":"green","font-family":"sans-serif"}),
-                html.Li(f"Cantidad total vendida: {total_quantity_3}",style={"color":"green","font-family":"sans-serif"}),
-                html.Li(f"Ingresos totales: {total_incomes_3}$",style={"color":"green","font-family":"sans-serif"}),
+                html.Li(f"Órden: {order_id}",style={"color":"green","font-family":"sans-serif","margin":"2.5px 0"}),
+                html.Li(f"Cantidad total de productos: {total_quantity_3}",style={"color":"green","font-family":"sans-serif","margin":"2.5px 0"}),
+                html.Li(f"Ingresos totales: {total_incomes_3}$",style={"color":"green","font-family":"sans-serif","margin":"2.5px 0"})
             ])
         ]) 
     ])
