@@ -58,60 +58,26 @@ model = xgbr.fit(x_train,y_train)
 
 print(f"Coeficiente de determinación: {model.score(x_test, y_test)}")
 
-# ---------------------------------------------------------------------------------------------------------------------------------------
+# generando clusters según los valores de las viviendas
 
-# realizadno boostrapping
+# clusters = []
+# inertias = []
 
-# tomando muestra principal con reemplazo del 3% de la población de datos
-
-main_sample = df["MedHouseVal"].sample(frac=3/100)
-
-samples = np.array([])
-
-# tomando 1000 muestras con reemplazo del 3%
-
-for m in range(0,1000):
-    sample = df["MedHouseVal"].sample(frac=3/100,replace=True)
-    samples = np.append(samples,sample.values)
+# for c in range(3,12):
+#     kmeans = KMeans(n_clusters=c).fit(df["MedHouseVal"].values.reshape((-1,1)))
+#     clusters.append(c)
+#     inertias.append(kmeans.inertia_)
     
-samples = samples.reshape((-1,sample.shape[0]))
+# plt.plot(clusters,inertias,marker="o")
+# plt.grid("on")
+# plt.show()
+                    # Método del codo
+                          #|
+kmeans = KMeans(n_clusters=5).fit(df["MedHouseVal"].values.reshape((-1,1)))
+clusters = kmeans.labels_.astype(str)
+df["clusters"] = clusters
+df["index"] = df.index
 
-# calculando la media de la muestra principal
-
-main_sample_mean = main_sample.mean()
-
-# calculando la media de las demás muestras
-
-samples_mean = samples.mean(axis=1)
-
-# calculando la media de la población
-
-population_mean = df["MedHouseVal"].mean()
-
-# calculando los límites del intervalo de confianza del 95%
-
-confidence_interval = np.quantile(samples_mean,[0.025,0.975])
-
-x = np.linspace(confidence_interval[0],confidence_interval[1], 100)
-y = [25] * x.size
-
-plt.title("Distribución muestral de la media")
-
-plt.hist(samples_mean,alpha=0.5)
-
-plt.axvline(main_sample_mean,linestyle="--",color="red",label="Media de la muestra principal")
-
-plt.axvline(confidence_interval[0],color="black",label="Límite inferior")
-plt.axvline(confidence_interval[1],color="black",label="Límite superior")
-
-# grafincando el rango del intervalo de confiaza
-
-plt.scatter(x, y, color="black",s=10,alpha=0.5)
-
-plt.axvline(population_mean,linestyle="--",color="blue",label="Media poblacional")
-
-plt.xlabel("Valores de casas")
-plt.ylabel("conteo")
-plt.legend(bbox_to_anchor=(1,0.5))
-plt.subplots_adjust(left=0.05,right=0.8)
-plt.show()
+fig = px.scatter(df, x="index", y="MedHouseVal", color="clusters")
+fig.update_layout(xaxis_title="Houses", yaxis_title="Values", title="Houses'values clustered")
+fig.show()
