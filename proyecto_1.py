@@ -14,13 +14,16 @@ from sklearn import tree
 
 df  = pd.read_csv("titanic.csv")
 
+# rellenando valores faltantes
 
 df.fillna({"Age": df["Age"].mean()},inplace=True)
 
+# codificando las variables categóricas
 
 df["Sex_encoded"] = LabelEncoder().fit_transform(df["Sex"])
 df["Embarked_encoded"] = LabelEncoder().fit_transform(df["Embarked"])
 
+# a su vez generamos una versión nominal de la variable objetivo
 
 map_survived = {
     0:"no",
@@ -28,23 +31,26 @@ map_survived = {
 }
 df["Survived_no_encoded"] = df["Survived"].apply(lambda x : map_survived.get(x))
 
-
+# seccionamos los datos en grupos de entrenamiento y prueba
 
 data_train, data_test, class_train, class_test = train_test_split(
                                                    df[["Sex_encoded","Pclass","Fare","Parch","SibSp"]],
                                                    df["Survived"],
                                                    test_size=0.15)
 
+# declaración del algoritmo
 
 tree_decision = tree.DecisionTreeClassifier(criterion="entropy",max_depth=5)
 
 model = tree_decision.fit(data_train,class_train)
 
+# predicción de los datos de prueba
 
 class_predicts = tree_decision.predict(data_test)
 
 class_real = class_test.values
 
+# métricas de rendimientos para clasificación
 
 matrix_confusion = confusion_matrix(class_real,class_predicts)
 TP = matrix_confusion[0,0]
@@ -61,6 +67,7 @@ precision = str(precision)
 F1_score = f1_score(class_real,class_predicts)
 F1_score = str(F1_score)
 
+# generando un dashboard
 
 app = dash.Dash(__name__)
 
