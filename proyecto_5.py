@@ -6,6 +6,8 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from xgboost import XGBRegressor
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 
 
 
@@ -28,7 +30,7 @@ df_model = remove_outliers(df_model,df.columns)
 
 df_model.dropna(inplace=True)
 
-x_train, x_test, y_train, y_test = train_test_split(df_model[data["feature_names"]],
+x_train, x_test, y_train, y_test = train_test_split(df_model[df_model.column[:-1]],
                                                     df_model["MedHouseVal"],
                                                     test_size=0.25)
 
@@ -56,7 +58,7 @@ model = xgbr.fit(x_train,y_train)
 
 # validando la eficiencia del modelo con los datos de prueba
 
-print(f"Coeficiente de determinación: {model.score(x_test, y_test)}")
+print(f"Coeficiente de determinación: {model.score(x_test, y_test)} \n")
 
 # generando clusters según los valores de las viviendas
 
@@ -71,11 +73,15 @@ print(f"Coeficiente de determinación: {model.score(x_test, y_test)}")
 # plt.plot(clusters,inertias,marker="o")
 # plt.grid("on")
 # plt.show()
-                    # Método del codo
-                          #|
+#                   Método del codo
+#                          |
 kmeans = KMeans(n_clusters=5).fit(df["MedHouseVal"].values.reshape((-1,1)))
 clusters = kmeans.labels_.astype(str)
 df["clusters"] = clusters
+
+silhouette_km = silhouette_score(df["MedHouseVal"].values.reshape((-1,1)),kmeans.labels_)
+print(f"Coeficiente de silueta: {silhouette_km}")
+
 df["index"] = df.index
 
 fig = px.scatter(df, x="index", y="MedHouseVal", color="clusters")
