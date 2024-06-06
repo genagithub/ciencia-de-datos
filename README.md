@@ -1,2 +1,1 @@
-Para instalar las librerías necesarias escribir en la terminal del IDE lo siguiente: "pip install -r librerias.txt". 
-Además, en el proyecto 2 hace falta de una base de datos en el gestor MySQL, link para descargarla: https://en.wikiversity.org/wiki/Database_Examples/Northwind/MySQL
+instalar las librerías necesarias para ver los resultados escribiendo en la terminal del IDE lo siguiente: "pip install -r librerias.txt". Además, en el proyecto 2 hace falta de una base de datos en el gestor MySQL, link para descargarla: https://en.wikiversity.org/wiki/Database_Examples/Northwind/MySQL
