@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import zscore
 import pandas as pd
 import seaborn as sns
 import plotly.express as px
@@ -40,7 +41,16 @@ model = linear_regression.fit(total_bill,df["tip"])
 objects = np.array([[28.15],[12.5],[3.8],[8.25],[19.5],[32.7],[40.9],[45]])
 
 predicts = model.predict(objects)
-    
+
+# extrayendo valores atípicos
+
+df_zscore = df[["total_bill","tip"]]
+
+df_zscore["total_bill_zscore"] = zscore(df["total_bill"]).abs()
+df_zscore["tip_zscore"] = zscore(df["tip"]).abs()
+
+outliers = df_zcore.loc((df_zscore["total_bill_zscore"] > 3) | (df_zscore["tip_zscore"] > 3),["total_bill","tip"])
+
 # generando un Dashboard
 
 app = dash.Dash(__name__)
@@ -107,6 +117,7 @@ def update_dash(slct_var):
     scatter = go.Figure()
     scatter.add_trace(go.Scatter(x=df["total_bill"],y=df["tip"],mode="markers",marker_color="blue",name="Propinas reales"))
     scatter.add_trace(go.Scatter(x=objects.reshape(-1),y=predicts,mode="lines+markers",marker_color="red",name="Predicciones"))
+    scatter.add_trace(go.Scatter(x=df_zscore["total_bill"],y=df_zscore["tip"],mode="markers",marker_color="green",name="Outliers"))
     scatter.update_layout(title="Algoritmo de Regresión Lineal",xaxis_title="Cuentas totales",yaxis_title="Propinas")
 
     return histplot,shapiro_wilk,scatter
