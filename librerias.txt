@@ -1,6 +1,7 @@
 pandas
 numpy
 scipy
+mysql
 matplotlib
 seaborn
 plotly
