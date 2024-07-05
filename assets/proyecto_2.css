@@ -1,0 +1,37 @@
+.e2_titulo {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 2em;
+}
+.e2_container {
+    width: 100%;
+    margin: 50px 0 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.e2_children {
+    height: 175px;
+    width: 500px;
+    background-color: white;
+    margin: 0 25px;
+    padding: 0 2px;
+    box-shadow:4px 4px 15px 0 black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.e2_list{
+    font-size:0.8em;
+    font-family:'no-roboto',sans-serif;
+    margin: 3px 10px 0 0;
+}
+.e2_mean{
+    font-size:0.9em;
+    font-weight:bold;
+    font-family:sans-serif;
+    margin:0;
+}
