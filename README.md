@@ -1,2 +1,2 @@
-# ciencia-de-datos
-Ejemplos de proyectos de data science y machine learning donde manipulamos data frames, analizamos patrones estadísticos, trabajamos con diferentes algoritmos, generamos modelos de clasificación/regresión, los entrenamos y evaluamos su rendimiento, y generamos dashboards.
+# Aclaración
+En el ejemplo 2, se requiere de base de datos en el motor MySQL, a continuación dejo su link de descarga: https://en.wikiversity.org/wiki/Database_Examples/Northwind/MySQL.
